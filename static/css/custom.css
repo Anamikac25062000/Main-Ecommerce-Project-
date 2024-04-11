@@ -1,0 +1,28 @@
+body
+{
+background-color:pink;
+font-family: 'Agdasima', sans-serif;
+}
+
+/*NAVBAR*/
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: white;
+
+   }
+
+.navbar-brand {
+    color:white;
+    }
+
+.nav-link {
+    color: white;
+}
+.bg-body-danger {
+color:red!important;
+}
+
+/*FOOTER*/
+
+
+
+

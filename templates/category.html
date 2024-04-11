@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+<img src="{% static 'image/shp.png' %}" style="height:500px;width:100%;" alt="logo image"></div>
+
+<div class="container-fluid mt-3 mb-4" style="margin-bottom:100px;">
+    <h2 class="text-center" style="color:red;">Our Collections</h2>
+    <p style="text-align:center;color:blue;">Online store contains Watches, clothes, footwears, cosmetics, food items and all the electronic gadgets like Laptops Mobiles. We provide good quality products and we have delivery all over India without
+    delivery charge.Online store is for someone who loves shopping</p>
+</div>
+
+
+<div class="container-fluid" style="margin-bottom:100px;">
+    <div class="row">
+        {% for data in datas %}
+        <div class="col-sm-4">
+            <div class="card" >
+                <img src="{{data.image.url}}" height="250px" width="80%" class="card-img-top" atl="..">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{data.name}}</h5>
+                    <a href="{% url 'shop:product_detail' data.slug %}" class="btn btn-danger" style="position:relative;left:38%;">Products</a>
+                 </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+ {% endblock %}

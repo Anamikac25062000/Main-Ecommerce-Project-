@@ -1,0 +1,64 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block content %}
+<center><h1>Signup</h1></center>
+<center>
+    <div class="container">
+<form method="POST" >
+    {% csrf_token %}
+
+<div class="mb-2 row">
+  <label  class="col-sm-1 col-form-label mx-2">Username</label>
+    <div class="col-sm-5">
+  <input type="text" class="form-control" name="u">
+        </div>
+</div>
+    <div class="mb-2 row ">
+  <label  class="col-sm-1 col-form-label mx-2">Password</label>
+        <div class="col-sm-5">
+  <input type="password" class="form-control" name="p" >
+            </div>
+</div>
+    <div class="mb-2 row">
+  <label  class="col-sm-1 col-form-label mx-2">Confirm Password</label>
+        <div class="col-sm-5">
+  <input type="password" class="form-control"  name="cp" >
+            </div>
+</div>
+    <div class="mb-2 row">
+  <label  class="col-sm-1 col-form-label mx-2">Email</label>
+        <div class="col-sm-5">
+  <input type="text" class="form-control"  name="e" >
+            </div>
+</div>
+
+<div class="mb-2 row">
+  <label  class="col-sm-1 col-form-label mx-2">Fist_name</label>
+        <div class="col-sm-5">
+  <input type="text" class="form-control"  name="f" >
+            </div>
+</div>
+
+    <div class="mb-2 row">
+  <label  class="col-sm-1 col-form-label mx-2">Last_name</label>
+        <div class="col-sm-5">
+  <input type="text" class="form-control"  name="l" >
+            </div>
+</div>
+
+<div class="mb-4">
+    <input type="submit" class="btn btn-primary ">
+
+</div>
+</form>
+</div>
+    {% if messages %}
+    {% for i in messages %}
+    <ul class="messages">
+        <li>{{i}}</li>
+    </ul>
+
+</center>
+{% endfor %}
+{% endif %}
+{% endblock %}

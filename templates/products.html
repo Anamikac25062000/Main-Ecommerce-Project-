@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="card ms-3  mt-2" style="max-width:1000px;max-height:1000px;">
+  <div class="row g-0">
+
+    <div class="col-md-4">
+        <img src="{{p_data.image.url}}" class="img-fluid rounded-start" height="250px" width="100%" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{p_data.name}}</h5>
+        <p class="card-text">{{p_data.description}}</p>
+        <p class="card-text"><small class="text-body-secondary">price:{{p_data.price}}</small></p>
+      <p class="card-text"><small class="text-body-secondary">STOCK:{{p_data.stock}}</small></p
+          <p class="card-text"><small class="text-body-secondary">Last updated:{{p_data.updated}}</small></p>
+          {% if p_data.stock <= 0 %}
+          <h2>Out of stock</h2>
+          {% else %}
+                    <a href="{% url 'cart:add_cart' p_data.id %}" class="btn btn-danger">Add to cart</a>
+
+          {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

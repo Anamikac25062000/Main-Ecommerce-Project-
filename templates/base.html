@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+  .footer{
+width:100%;
+height:40px;
+position:fixed;
+padding:2px;
+bottom:0px;
+left:0px;
+padding:10px;
+margin:2px;
+  background-color:#32612D;
+  text-align:center;1
+</style>
+</head>
+<body>
+<div class="container-fluid">
+    <center><img src="{% static 'image/logo.png' %}" height="90px" width="100px" alt="logo image"></center>
+    <nav class="navbar navbar-expand-lg bg-success p-1">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Online Store</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'shop:home' %}">Home</a>
+        </li>
+       {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            All Category
+          </a>
+          <ul class="dropdown-menu">
+            {% for links in link %}
+            <li><a class="dropdown-item" href="{% url 'shop:product_detail' links.slug %}">{{links.name}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'cart:cartview' %}"><i class="fa-solid fa-cart-shopping" style="font-size:20px;">{{item_count}}</i></a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'cart:orderview' %}">Your Orders</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'shop:user_logout' %}">Logout</a>
+        </li>
+        {% else %}
+           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'shop:signup' %}">Register</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'shop:user_login' %}">Login</a>
+        </li>
+          {% endif %}
+      </ul>
+
+      <form class="d-flex" role="search" method="POST"   action="{% url 'search:searchresult' %}">
+          {% csrf_token %}
+        <input class="form-control me-2" type="search"  name="search_item"  placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+</div>
+{% block content %}
+{% endblock %}
+<footer class="footer" style="color:white;">
+  <div>
+    <p><i class="fa-regular fa-copyright"></i>Online store.All rights are reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
